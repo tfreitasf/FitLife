@@ -1,5 +1,6 @@
 package br.com.povengenharia.fitlife
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,12 +9,13 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 
 class ImcActivity : AppCompatActivity() {
 
     private lateinit var editWeight: EditText
     private lateinit var editHeight: EditText
-    private lateinit var textBmi: TextView
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +24,7 @@ class ImcActivity : AppCompatActivity() {
 
         editWeight = findViewById(R.id.et_bmi_weight)
         editHeight = findViewById(R.id.et_bmi_height)
-        textBmi = findViewById(R.id.tv_bmi_result)
+
 
         val buttonCalculate: Button = findViewById(R.id.btn_bmi_calculate)
 
@@ -42,9 +44,15 @@ class ImcActivity : AppCompatActivity() {
             val bmiResult = calculateBmi(weight, height)
 
             val bmiResultRange = bmiResponde(bmiResult)
-            textBmi.text = getString(bmiResultRange)
-            Toast.makeText(this, bmiResultRange, Toast.LENGTH_SHORT).show()
 
+            val dialog = AlertDialog.Builder(this)
+
+            .setTitle(getString(R.string.imc_response, bmiResult))
+            .setMessage(bmiResultRange)
+            .setPositiveButton(android.R.string.ok) { p0, p1 -> }
+
+            val d= dialog.create()
+            d.show()
 
         }
 

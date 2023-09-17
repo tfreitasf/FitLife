@@ -50,15 +50,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_bmi_height" />
 
-    <TextView
-        android:id="@+id/tv_bmi_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_bmi_calculate" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
