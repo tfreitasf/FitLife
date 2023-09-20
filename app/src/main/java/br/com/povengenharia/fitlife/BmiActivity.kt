@@ -1,20 +1,16 @@
 package br.com.povengenharia.fitlife
 
 import android.content.Context
-import android.content.DialogInterface
-import android.inputmethodservice.InputMethodService
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 
-class ImcActivity : AppCompatActivity() {
+class BmiActivity : AppCompatActivity() {
 
     private lateinit var editWeight: EditText
     private lateinit var editHeight: EditText

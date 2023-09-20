@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:padding="16dp"
-    tools:context=".ImcActivity">
+    tools:context=".BmiActivity">
 
     <TextView
         android:id="@+id/tv_bmi_description"
