@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -40,7 +40,22 @@ class MainActivity : AppCompatActivity() {
                 color = Color.YELLOW
             )
         )
-
+        mainItems.add(
+            MainItem(
+                id = 3,
+                drawabledId = R.drawable.historicoimc,
+                textStringId = R.string.tv_bmi_history_title,
+                color = Color.BLUE
+            )
+        )
+        mainItems.add(
+            MainItem(
+                id = 4,
+                drawabledId = R.drawable.historicoimc,
+                textStringId = R.string.tv_bmi_history_title,
+                color = Color.MAGENTA
+            )
+        )
 
         val adapter = MainAdapter(mainItems)
 
@@ -82,7 +97,7 @@ class MainActivity : AppCompatActivity() {
             title.setText(item.textStringId)
             val img: ImageView = itemView.findViewById(R.id.iv_icon_image)
             img.setImageResource(item.drawabledId)
-            val container : LinearLayout = itemView as LinearLayout
+            val container: CardView = itemView as CardView
             container.setBackgroundColor(item.color)
 
         }
