@@ -1,7 +1,6 @@
 package br.com.povengenharia.fitlife
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -9,12 +8,13 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import br.com.povengenharia.fitlife.model.Calc
 
 class BmiActivity : AppCompatActivity() {
 
     private lateinit var editWeight: EditText
     private lateinit var editHeight: EditText
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,12 +46,26 @@ class BmiActivity : AppCompatActivity() {
 
             val dialog = AlertDialog.Builder(this)
 
-            .setTitle(getString(R.string.imc_response, bmiResult))
-            .setMessage(bmiResultRange)
-            .setPositiveButton(android.R.string.ok) { p0, p1 -> }
+                .setTitle(getString(R.string.imc_response, bmiResult))
+                .setMessage(bmiResultRange)
+                .setPositiveButton(android.R.string.ok) { p0, p1 -> }
+                .setNegativeButton(R.string.save) { dialog, which ->
+                    Thread {
+                        val app = application as App
+                        val dao = app.db.calcDao()
+                        dao.insert(Calc(type = "imc", res = bmiResult))
 
-            val d= dialog.create()
-            d.show()
+                        runOnUiThread {
+                            Toast.makeText(this@BmiActivity, R.string.saved, Toast.LENGTH_LONG)
+                                .show()
+                        }
+
+
+                    }.start()
+
+                }
+                .create()
+                .show()
 
             val service = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             service.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
