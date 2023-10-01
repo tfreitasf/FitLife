@@ -1,6 +1,7 @@
 package br.com.povengenharia.fitlife
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -56,8 +57,9 @@ class BmiActivity : AppCompatActivity() {
                         dao.insert(Calc(type = "imc", res = bmiResult))
 
                         runOnUiThread {
-                            Toast.makeText(this@BmiActivity, R.string.saved, Toast.LENGTH_LONG)
-                                .show()
+                            val intent = Intent(this@BmiActivity, BmiHistoryActivity::class.java)
+                            intent.putExtra("type", "imc")
+                            startActivity(intent)
                         }
 
 

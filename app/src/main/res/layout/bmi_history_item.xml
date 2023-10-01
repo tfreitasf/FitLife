@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        app:cardElevation="4dp"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp">
+
 
             <TextView
-                android:id="@+id/tv_weight"
+                android:id="@+id/tv_result_calc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Seu Peso é: xx.xx"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Seu IMC é: xx.xx - xxxxxxxxxxx"
-                app:layout_constraintTop_toBottomOf="@id/tv_weight"
-                app:layout_constraintStart_toStartOf="@id/tv_weight"/>
+
+                app:layout_constraintStart_toStartOf="@id/tv_result_calc"
+                app:layout_constraintTop_toBottomOf="@id/tv_result_calc" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
 
                     2 -> {
                         val intent = Intent(this@MainActivity, BmiHistoryActivity::class.java)
+                        intent.putExtra("type", "imc")
                         startActivity(intent)
 
                     }
