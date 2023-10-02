@@ -20,4 +20,5 @@
 
     <string name="imc_response">Seu IMC é: %1$.2f</string>
     <string name="saved">Registro salvo com sucesso</string>
+    <string name="search">Buscar\n</string>
 </resources>

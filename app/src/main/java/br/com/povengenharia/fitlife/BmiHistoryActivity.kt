@@ -53,7 +53,9 @@ class BmiHistoryActivity : AppCompatActivity() {
 
     }
 
-    private inner class BmiHistoryAdapter(private val data: List<Calc>) :
+    private inner class BmiHistoryAdapter(
+        private val bmiList: List<Calc>
+    ) :
         RecyclerView.Adapter<BmiHistoryHolder>(
 
         ) {
@@ -72,13 +74,13 @@ class BmiHistoryActivity : AppCompatActivity() {
         }
 
         override fun getItemCount(): Int {
-            return data.size
+            return bmiList.size
 
         }
     }
 
 
-    private class BmiHistoryHolder(view: View) : RecyclerView.ViewHolder(view) {
+    private inner class BmiHistoryHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(calc: Calc) {
 

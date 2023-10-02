@@ -3,6 +3,8 @@ package br.com.povengenharia.fitlife
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
@@ -57,9 +59,8 @@ class BmiActivity : AppCompatActivity() {
                         dao.insert(Calc(type = "imc", res = bmiResult))
 
                         runOnUiThread {
-                            val intent = Intent(this@BmiActivity, BmiHistoryActivity::class.java)
-                            intent.putExtra("type", "imc")
-                            startActivity(intent)
+                            openBmiHistory()
+
                         }
 
 
@@ -77,6 +78,26 @@ class BmiActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_search) {
+            openBmiHistory()
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun openBmiHistory() {
+        val intent = Intent(this@BmiActivity, BmiHistoryActivity::class.java)
+        intent.putExtra("type", "imc")
+        startActivity(intent)
+    }
+
 
     @StringRes
     private fun bmiResponde(imc: Double): Int {
