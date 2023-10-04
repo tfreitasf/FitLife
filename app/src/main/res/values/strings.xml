@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">FitLife</string>
     <string name="tv_bmi_description"><b>O que é IMC? </b>  O IMC é uma medida que avalia seu peso em relação à sua altura. \n<br></br> <b>Para que serve?</b><br /> Indica se você está abaixo do peso, com peso saudável, com sobrepeso ou obeso.\n<br /><b>Como calcular?</b><br /> Divida seu peso (kg) pela altura (m) ao quadrado: IMC = peso / (altura * altura).</string>
+    <string name="tv_bmr_description"><b>TMB </b> é o cálculo para descrobrir a quantidade calórica que o corpo necessita com base no seu estilo de vida. \n Vale destacar, é claro, que esse cálculo depende de outros fatores clínicos para ser elaborado</string>
     <string name="et_weight">Digite seu peso (kg)</string>
     <string name="tv_bmi_title">IMC</string>
     <string name="tv_bmi_history_title">Historico IMC</string>
+    <string name="tv_bmr_title">BRM</string>
     <string name="et_height">Digite sua altura (cm)</string>
     <string name="btn_calculate">Calcular</string>
     <string name="toast_message_validation">Todos os campos devem ser maiores que zero</string>
@@ -21,4 +23,8 @@
     <string name="imc_response">Seu IMC é: %1$.2f</string>
     <string name="saved">Registro salvo com sucesso</string>
     <string name="search">Buscar\n</string>
+    <string name="et_age">Idade</string>
+    <string name="rb_txt_man">Homem</string>
+    <string name="rb_txt_woman">Mulher</string>
+
 </resources>
