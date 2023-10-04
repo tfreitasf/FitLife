@@ -39,6 +39,8 @@ class BmrActivity : AppCompatActivity() {
         editAge = findViewById(R.id.et_bmr_age)
 
 
+
+
         val buttonCalculate: Button = findViewById(R.id.btn_bmr_calculate)
 
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
@@ -51,6 +53,7 @@ class BmrActivity : AppCompatActivity() {
         }
 
         buttonCalculate.setOnClickListener {
+            val exerciseIndex = items.indexOf(lifestyle.text.toString())
 
             if (!validate()) {
                 Toast.makeText(
@@ -65,7 +68,7 @@ class BmrActivity : AppCompatActivity() {
             val height = editHeight.text.toString().toInt()
             val age = editAge.text.toString().toInt()
 
-            val brmResult = calculateBaseBrm(weight, height, age, selectedGender)
+            val brmResult = calculateBaseBrm(weight, height, age, selectedGender, exerciseIndex)
             displayResult(brmResult)
         }
 
@@ -76,11 +79,14 @@ class BmrActivity : AppCompatActivity() {
         weight: Double,
         height: Int,
         age: Int,
-        gender: Gender?
+        gender: Gender?,
+        exerciseIndex: Int
     ): Double {
+        val exerciseMultipliers = arrayOf(1.2, 1.375, 1.55, 1.725, 1.9)
+
         return when (gender) {
-            Gender.MAN -> 66 + ((13.7 * weight) + (5 * height) - (6.8 * age))
-            Gender.WOMAN -> 655 + ((9.6 * weight) + (1.8 * height) - (4.7 * age))
+            Gender.MAN -> exerciseMultipliers[exerciseIndex] *  (66 + ((13.7 * weight) + (5 * height) - (6.8 * age)))
+            Gender.WOMAN -> exerciseMultipliers[exerciseIndex] * (655 + ((9.6 * weight) + (1.8 * height) - (4.7 * age)))
             null -> 0.0
 
         }
