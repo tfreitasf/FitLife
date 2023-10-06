@@ -1,13 +1,18 @@
 package br.com.povengenharia.fitlife
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import br.com.povengenharia.fitlife.model.Calc
 
 enum class Gender { MAN, WOMAN }
 
@@ -68,8 +73,32 @@ class BmrActivity : AppCompatActivity() {
             val height = editHeight.text.toString().toInt()
             val age = editAge.text.toString().toInt()
 
-            val brmResult = calculateBaseBrm(weight, height, age, selectedGender, exerciseIndex)
-            displayResult(brmResult)
+            val bmrResult = calculateBaseBrm(weight, height, age, selectedGender, exerciseIndex)
+
+            val dialog = AlertDialog.Builder(this)
+                .setTitle(getString(R.string.bmr_response, bmrResult))
+                .setMessage(getString(R.string.bmr_msg))
+                .setPositiveButton(android.R.string.ok) { p0, p1 -> }
+                .setNegativeButton(R.string.save){_,_ ->
+                    Thread{
+                        val app = application as App
+                        val dao = app.db.calcDao()
+                        dao.insert(Calc(type = "bmr", res = bmrResult))
+
+                        runOnUiThread {
+                            openBmrHistory()
+
+                        }
+
+                    }.start()
+                }
+
+                .create()
+                .show()
+            val service = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            service.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+
+
         }
 
 
@@ -90,6 +119,12 @@ class BmrActivity : AppCompatActivity() {
             null -> 0.0
 
         }
+    }
+
+    private fun openBmrHistory(){
+        val intent = Intent(this@BmrActivity, BmrHistoryActivity::class.java)
+        intent.putExtra("type", "bmr")
+        startActivity(intent)
     }
 
     private fun displayResult(result: Double) {

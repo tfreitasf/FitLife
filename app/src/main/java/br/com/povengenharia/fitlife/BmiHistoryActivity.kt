@@ -38,7 +38,6 @@ class BmiHistoryActivity : AppCompatActivity() {
 
 
             runOnUiThread {
-                //Log.i("Teste", "Resposta: $response")
                 val adapter = BmiHistoryAdapter(bmiHistoryList)
                 rvBmiHistory = findViewById(R.id.rv_bmi_history)
                 rvBmiHistory.adapter = adapter
@@ -84,10 +83,11 @@ class BmiHistoryActivity : AppCompatActivity() {
 
         fun bind(calc: Calc) {
 
+            val textViewType = itemView.findViewById<TextView>(R.id.tv_type_hitory)
+            val textViewResult = itemView.findViewById<TextView>(R.id.tv_result_bmi_calc)
+            val textViewDate = itemView.findViewById<TextView>(R.id.tv_bmi_date)
 
-            val textViewResult = itemView.findViewById<TextView>(R.id.tv_result_calc)
-            val textViewDate = itemView.findViewById<TextView>(R.id.tv_date)
-
+            textViewType.text = calc.type
             val formattedDate = formatDate(calc.createdDate)
             val formatResult = String.format("%.2f", calc.res)
 

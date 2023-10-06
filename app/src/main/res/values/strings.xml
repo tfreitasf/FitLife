@@ -6,6 +6,7 @@
     <string name="tv_bmi_title">IMC</string>
     <string name="tv_bmi_history_title">Historico IMC</string>
     <string name="tv_bmr_title">BRM</string>
+    <string name="tv_bmr_history_title">Historico TMB</string>
     <string name="et_height">Digite sua altura (cm)</string>
     <string name="btn_calculate">Calcular</string>
     <string name="toast_message_validation">Todos os campos devem ser maiores que zero</string>
@@ -26,5 +27,8 @@
     <string name="et_age">Idade</string>
     <string name="rb_txt_man">Homem</string>
     <string name="rb_txt_woman">Mulher</string>
+
+    <string name="bmr_response">Você precisa consumir: %1$.2f calorias</string>
+    <string name="bmr_msg">Tenha uma alimentação saudável e equilibrada. Priorize alimentos ricos em nutrientes.</string>
 
 </resources>
