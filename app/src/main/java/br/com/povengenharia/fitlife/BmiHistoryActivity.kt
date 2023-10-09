@@ -20,7 +20,7 @@ class BmiHistoryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bmi_history)
+        setContentView(R.layout.activity_history)
 
 
         val type =
@@ -34,22 +34,13 @@ class BmiHistoryActivity : AppCompatActivity() {
             bmiHistoryList.clear()
             bmiHistoryList.addAll(response)
 
-
-
-
             runOnUiThread {
                 val adapter = BmiHistoryAdapter(bmiHistoryList)
-                rvBmiHistory = findViewById(R.id.rv_bmi_history)
+                rvBmiHistory = findViewById(R.id.rv_history)
                 rvBmiHistory.adapter = adapter
                 rvBmiHistory.layoutManager = LinearLayoutManager(this)
-
-
             }
-
-
         }.start()
-
-
     }
 
     private inner class BmiHistoryAdapter(
@@ -59,7 +50,7 @@ class BmiHistoryActivity : AppCompatActivity() {
 
         ) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BmiHistoryHolder {
-            val view = layoutInflater.inflate(R.layout.bmi_history_item, parent, false)
+            val view = layoutInflater.inflate(R.layout.history_item, parent, false)
             return BmiHistoryHolder(view)
 
 
@@ -84,8 +75,8 @@ class BmiHistoryActivity : AppCompatActivity() {
         fun bind(calc: Calc) {
 
             val textViewType = itemView.findViewById<TextView>(R.id.tv_type_hitory)
-            val textViewResult = itemView.findViewById<TextView>(R.id.tv_result_bmi_calc)
-            val textViewDate = itemView.findViewById<TextView>(R.id.tv_bmi_date)
+            val textViewResult = itemView.findViewById<TextView>(R.id.tv_result_history)
+            val textViewDate = itemView.findViewById<TextView>(R.id.tv_date_history)
 
             textViewType.text = calc.type
             val formattedDate = formatDate(calc.createdDate)

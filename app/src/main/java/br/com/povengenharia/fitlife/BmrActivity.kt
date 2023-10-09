@@ -123,13 +123,8 @@ class BmrActivity : AppCompatActivity() {
 
     private fun openBmrHistory(){
         val intent = Intent(this@BmrActivity, BmrHistoryActivity::class.java)
-        intent.putExtra("type", "bmr")
+        intent.putExtra("type", "bmr") // Use "type" como a chave
         startActivity(intent)
-    }
-
-    private fun displayResult(result: Double) {
-        val resultMessage = "Seu resultado é: $result"
-        Toast.makeText(this, resultMessage, Toast.LENGTH_SHORT).show()
     }
 
 

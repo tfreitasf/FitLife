@@ -5,7 +5,7 @@
     <string name="et_weight">Digite seu peso (kg)</string>
     <string name="tv_bmi_title">IMC</string>
     <string name="tv_bmi_history_title">Historico IMC</string>
-    <string name="tv_bmr_title">BRM</string>
+    <string name="tv_bmr_title">TMB</string>
     <string name="tv_bmr_history_title">Historico TMB</string>
     <string name="et_height">Digite sua altura (cm)</string>
     <string name="btn_calculate">Calcular</string>

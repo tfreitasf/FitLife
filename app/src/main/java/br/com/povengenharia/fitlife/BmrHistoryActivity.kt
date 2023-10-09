@@ -20,9 +20,11 @@ class BmrHistoryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bmr_history)
+        setContentView(R.layout.activity_history)
 
-        val type = intent?.extras?.getString("type") ?: throw IllegalStateException("type not found")
+
+        val type =
+            intent?.extras?.getString("type") ?: throw IllegalStateException("type not found")
 
         Thread{
             val app = application as App
@@ -34,16 +36,11 @@ class BmrHistoryActivity : AppCompatActivity() {
 
             runOnUiThread{
                 val adapter = BmrHistoryAdapter(bmrHistoryList)
-                rvBmrHistory = findViewById(R.id.rv_bmr_history)
+                rvBmrHistory = findViewById(R.id.rv_history)
                 rvBmrHistory.adapter = adapter
                 rvBmrHistory.layoutManager = LinearLayoutManager(this)
-
             }
         }.start()
-
-
-
-
     }
 
     private inner class BmrHistoryAdapter(
@@ -51,7 +48,7 @@ class BmrHistoryActivity : AppCompatActivity() {
     ) :
         RecyclerView.Adapter<BmrHistoryHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BmrHistoryHolder {
-            val view = layoutInflater.inflate(R.layout.activity_bmr_history, parent, false)
+            val view = layoutInflater.inflate(R.layout.history_item, parent, false)
             return BmrHistoryHolder(view)
         }
 
@@ -72,14 +69,14 @@ class BmrHistoryActivity : AppCompatActivity() {
         fun bind(calc: Calc) {
 
             val textViewType = itemView.findViewById<TextView>(R.id.tv_type_hitory)
-            val textViewResult = itemView.findViewById<TextView>(R.id.tv_result_bmi_calc)
-            val textViewDate = itemView.findViewById<TextView>(R.id.tv_bmi_date)
+            val textViewResult = itemView.findViewById<TextView>(R.id.tv_result_history)
+            val textViewDate = itemView.findViewById<TextView>(R.id.tv_date_history)
 
             textViewType.text = calc.type
             val formatedDate = formatDate(calc.createdDate)
-            val formartResult = String.format("$.2f", calc.res)
+            val formatResult = String.format("%.2f", calc.res)
 
-            textViewResult.text = formartResult
+            textViewResult.text = formatResult
             textViewDate.text = formatedDate
 
         }

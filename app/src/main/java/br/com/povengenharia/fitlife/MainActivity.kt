@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     4 ->{
                         val intent = Intent(this@MainActivity, BmrHistoryActivity::class.java)
+                        intent.putExtra("type", "bmr")
                         startActivity(intent)
                     }
 
