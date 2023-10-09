@@ -1,5 +1,6 @@
 package br.com.povengenharia.fitlife
 
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -8,15 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.povengenharia.fitlife.model.Calc
-import java.text.SimpleDateFormat
+import java.lang.IllegalStateException
 import java.util.Date
 import java.util.Locale
 
-class BmiHistoryActivity : AppCompatActivity() {
+class BmrHistoryActivity : AppCompatActivity() {
 
-    private lateinit var rvBmiHistory: RecyclerView
-    private val bmiHistoryList = mutableListOf<Calc>()
-
+    private lateinit var rvBmrHistory: RecyclerView
+    private val bmrHistoryList = mutableListOf<Calc>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,51 +26,45 @@ class BmiHistoryActivity : AppCompatActivity() {
         val type =
             intent?.extras?.getString("type") ?: throw IllegalStateException("type not found")
 
-        Thread {
+        Thread{
             val app = application as App
             val dao = app.db.calcDao()
             val response = dao.getRegisterByType(type)
 
-            bmiHistoryList.clear()
-            bmiHistoryList.addAll(response)
+            bmrHistoryList.clear()
+            bmrHistoryList.addAll(response)
 
-            runOnUiThread {
-                val adapter = BmiHistoryAdapter(bmiHistoryList)
-                rvBmiHistory = findViewById(R.id.rv_history)
-                rvBmiHistory.adapter = adapter
-                rvBmiHistory.layoutManager = LinearLayoutManager(this)
+            runOnUiThread{
+                val adapter = BmrHistoryAdapter(bmrHistoryList)
+                rvBmrHistory = findViewById(R.id.rv_history)
+                rvBmrHistory.adapter = adapter
+                rvBmrHistory.layoutManager = LinearLayoutManager(this)
             }
         }.start()
     }
 
-    private inner class BmiHistoryAdapter(
-        private val bmiList: List<Calc>
+    private inner class BmrHistoryAdapter(
+        private val bmrList: List<Calc>
     ) :
-        RecyclerView.Adapter<BmiHistoryHolder>(
-
-        ) {
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BmiHistoryHolder {
+        RecyclerView.Adapter<BmrHistoryHolder>() {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BmrHistoryHolder {
             val view = layoutInflater.inflate(R.layout.history_item, parent, false)
-            return BmiHistoryHolder(view)
-
-
+            return BmrHistoryHolder(view)
         }
 
-        override fun onBindViewHolder(holder: BmiHistoryHolder, position: Int) {
-            val calc = bmiHistoryList[position]
+
+        override fun onBindViewHolder(holder: BmrHistoryHolder, position: Int) {
+            val calc = bmrHistoryList[position]
             holder.bind(calc)
-
-
         }
 
         override fun getItemCount(): Int {
-            return bmiList.size
-
+            return bmrList.size
         }
+
     }
 
-
-    private inner class BmiHistoryHolder(view: View) : RecyclerView.ViewHolder(view) {
+    private inner class BmrHistoryHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(calc: Calc) {
 
@@ -79,21 +73,19 @@ class BmiHistoryActivity : AppCompatActivity() {
             val textViewDate = itemView.findViewById<TextView>(R.id.tv_date_history)
 
             textViewType.text = calc.type
-            val formattedDate = formatDate(calc.createdDate)
+            val formatedDate = formatDate(calc.createdDate)
             val formatResult = String.format("%.2f", calc.res)
 
-
-
             textViewResult.text = formatResult
-            textViewDate.text = formattedDate
-
+            textViewDate.text = formatedDate
 
         }
-
-        private fun formatDate(date: Date): String {
-            val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-            return "Data: ${sdf.format(date)}"
-        }
-
     }
+
+    private fun formatDate(date: Date): String {
+        val sdf = SimpleDateFormat("dd/MM/yyy HH:mm", Locale.getDefault())
+        return "Data: ${sdf.format(date)}"
+    }
+
+
 }

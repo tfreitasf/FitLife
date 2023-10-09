@@ -49,6 +49,15 @@ class MainActivity : AppCompatActivity() {
                 color = Color.BLUE
             )
         )
+        mainItems.add(
+            MainItem(
+                id=4,
+                drawabledId = R.drawable.historico,
+                textStringId = R.string.tv_bmr_history_title,
+                color = Color.RED
+            )
+        )
+
 
 
         val adapter = MainAdapter(mainItems) {id ->
@@ -68,6 +77,12 @@ class MainActivity : AppCompatActivity() {
                         val intent = Intent(this@MainActivity, BmrActivity::class.java)
                         startActivity(intent)
                     }
+                    4 ->{
+                        val intent = Intent(this@MainActivity, BmrHistoryActivity::class.java)
+                        intent.putExtra("type", "bmr")
+                        startActivity(intent)
+                    }
+
 
                 }
             }
