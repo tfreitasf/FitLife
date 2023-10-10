@@ -94,7 +94,7 @@ class BmiActivity : AppCompatActivity() {
     }
 
     private fun openBmiHistory() {
-        val intent = Intent(this@BmiActivity, BmiHistoryActivity::class.java)
+        val intent = Intent(this@BmiActivity, HistoryActivity::class.java)
         intent.putExtra("type", "imc")
         startActivity(intent)
     }

@@ -122,7 +122,7 @@ class BmrActivity : AppCompatActivity() {
     }
 
     private fun openBmrHistory(){
-        val intent = Intent(this@BmrActivity, BmrHistoryActivity::class.java)
+        val intent = Intent(this@BmrActivity, HistoryActivity::class.java)
         intent.putExtra("type", "bmr") // Use "type" como a chave
         startActivity(intent)
     }
