@@ -30,5 +30,8 @@
 
     <string name="bmr_response">Você precisa consumir: %1$.2f calorias</string>
     <string name="bmr_msg">Tenha uma alimentação saudável e equilibrada. Priorize alimentos ricos em nutrientes.</string>
+    <string name="txt_edit">Editar</string>
+    <string name="txt_delete">Excluir\n</string>
+    <string name="txt_share">Compartilhar</string>
 
 </resources>

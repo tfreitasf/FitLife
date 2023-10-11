@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/edit_item"
+        android:title="@string/txt_edit" />
+    <item
+        android:id="@+id/delete_item"
+        android:title="@string/txt_delete" />
+    <item
+        android:id="@+id/share_item"
+        android:title="@string/txt_share" />
+</menu>

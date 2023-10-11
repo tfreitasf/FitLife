@@ -3,6 +3,7 @@ package br.com.povengenharia.fitlife
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -54,6 +55,39 @@ class HistoryActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: DataHistoryHolder, position: Int) {
             val calc = dataHistoryList[position]
             holder.bind(calc)
+
+            holder.itemView.setOnLongClickListener { view ->
+                val popupMenu = PopupMenu(view.context, view)
+                popupMenu.inflate(R.menu.context_menu)
+
+                popupMenu.setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        R.id.edit_item -> {
+                            // Lógica para editar o item
+                            true
+                        }
+
+                        R.id.delete_item -> {
+                            // Lógica para excluir o item
+                            true
+                        }
+
+                        R.id.share_item -> {
+                            // Lógica para compartilhar o item
+                            true
+                        }
+
+                        else -> false
+                    }
+
+
+                }
+                popupMenu.show()
+
+                true
+
+
+            }
         }
 
         override fun getItemCount(): Int {
